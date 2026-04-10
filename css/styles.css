@@ -1,0 +1,47 @@
+
+body{
+    background-color: #d6c0ff;
+}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+
+
+.navbar {
+    height: 65px;
+}
+
+
+.card {
+    transition: transform 0.25s;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.btn-purple {
+    background-color: #6f42c1;  
+    color: #ffffff;                 
+    border: none;               
+}
+
+.btn-purple:hover {
+    background-color: #5a32a3;  
+    color: #ffffff;
+}
+.btn-purple-sign{
+    color: #5a32a3;
+
+}
+.bg-purple{
+    background-color: #b891ff;  
+    color: #ffffff;                 
+    border: none; 
+
+}
+.container-down{
+    background-color:#d6c0ff
+}
