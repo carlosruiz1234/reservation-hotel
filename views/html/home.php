@@ -41,7 +41,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="<?= SITE_URL ?>index.php?action=getFormLoginUser"
-                           class="btn btn-warning btn-sm text-dark fw-bold">Ingresar</a>
+                           class="btn btn-purple btn-sm text-dark fw-bold">Ingresar</a>
                     </li>
                 <?php endif; ?>
             </ul>

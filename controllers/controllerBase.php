@@ -4,7 +4,7 @@ require_once 'models/user.php';
 
 class ControllerBase {
 
-}    public function registerUser($datos) {
+    public function registerUser($datos) {
         unset($_SESSION['errors']);
         unset($_SESSION['old']);
         unset($_SESSION['success']);
@@ -119,9 +119,7 @@ class ControllerBase {
         }elseif (strlen($datos['phone']) > 10){
             $errores['phone'] = 'El telefono no puede tener mas de 10 caracteres';
         }
-         elseif (!preg_match('/^[0-9]+$/', $datos['phone'])) {
-            $errores['phone'] = 'El telefono solo puede contener números';
-        }
+        //_______
         if (empty(trim($datos['email'] ?? ''))) {
             $errores['email'] = 'El email es requerido';
         } elseif (!filter_var($datos['email'], FILTER_VALIDATE_EMAIL)) {
@@ -154,5 +152,6 @@ class ControllerBase {
     public function verPaginaInicio($vista) {
         require_once $vista;
     }
+}
 
 ?>
