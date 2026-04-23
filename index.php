@@ -24,7 +24,7 @@ if(isset($_GET['action'])){
     elseif($_GET['action'] == 'logout'){
         $controllerBase->logout();
     }
-<<<<<<< HEAD
+
     elseif($_GET['action'] == 'dashboard'){
         $controllerBase->verDashboard();
     }
@@ -44,7 +44,7 @@ if(isset($_GET['action'])){
         $controllerBase->borrarReserva($_GET['id']);
     }
 =======
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
 
 } else {
     $controllerBase->verPaginaInicio('views/html/home.php');
