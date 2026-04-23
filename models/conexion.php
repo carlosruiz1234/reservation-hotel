@@ -18,7 +18,11 @@ class Conexion {
             throw new Exception('Error de conexión a la base de datos: ' . $this->mySQLI->connect_error);
         }
 
+<<<<<<< HEAD
        // echo "Conectado a la base de datos";
+=======
+        echo "Conectado a la base de datos";
+>>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
     }
 
     public function desconectar(){

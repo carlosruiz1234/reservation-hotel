@@ -57,11 +57,16 @@ class User {
         if ($result->num_rows > 0) {
             $usuario = $result->fetch_assoc();
             if (password_verify($data['password'], $usuario['password'])) {
+<<<<<<< HEAD
                 return $usuario; 
+=======
+                return $usuario; // login correcto
+>>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
             }
         }
         return false; 
     }
+<<<<<<< HEAD
 
     public function getDocumentTypes() {
     $conexion = new Conexion();
@@ -72,5 +77,7 @@ class User {
     $conexion->desconectar();
     return $result->fetch_all(MYSQLI_ASSOC);
 }
+=======
+>>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
 }
 ?>

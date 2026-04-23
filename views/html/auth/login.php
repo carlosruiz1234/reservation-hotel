@@ -9,6 +9,10 @@
 </head>
 <body class="bg-light">
 
+<<<<<<< HEAD
+=======
+<!--barar de nav -->
+>>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php">🏨 Hotel Paradise</a>
@@ -33,7 +37,11 @@
     </div>
 </nav>
 
+<<<<<<< HEAD
 <!--  form -->
+=======
+<!-- este es el form -->
+>>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-5 col-lg-4">
