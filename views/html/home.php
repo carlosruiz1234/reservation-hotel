@@ -75,11 +75,11 @@
         </div>
 
         <div class="carousel-item">
-<<<<<<< HEAD
+
             <img src="https://images.unsplash.com/photo-1720694924759-2a2daaa98987?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-=======
-            <img src="https://i.pinimg.com/736x/d4/49/a2/d449a298570c712918903d82ef9445de.jpg"
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
+            <img src="https://i.pinimg.com/736x/d4/49/a2/d449a298570c712918903d82ef9445de.jpg">
+
                  class="d-block w-100" style="height:550px; object-fit:cover;" alt="Habitaciones">
             <div class="carousel-caption d-none d-md-block">
                 <h2 class="display-5 fw-bold">servicio Bar</h2>
@@ -88,11 +88,11 @@
         </div>
 
         <div class="carousel-item">
-<<<<<<< HEAD
+
             <img src="https://plus.unsplash.com/premium_photo-1764687875096-2667794f2ac5?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-=======
+
             <img src="https://i.pinimg.com/736x/6d/72/b3/6d72b35fd6efedcd0ef6a425c4237275.jpg"
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
                  class="d-block w-100" style="height:550px; object-fit:cover;" alt="Piscina">
             <div class="carousel-caption d-none d-md-block">
                 <h2 class="display-5 fw-bold">Habitaciones de lujo</h2>

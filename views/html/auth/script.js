@@ -1,9 +1,4 @@
 
-// ======================================================
-// VALIDACIONES EN TIEMPO REAL
-// ======================================================
-
-// 1. Agarramos todos los campos
 const docTipo     = document.getElementById('document_type_id');
 const docNumero   = document.getElementById('document_number');
 const nombre      = document.getElementById('name');
@@ -14,9 +9,6 @@ const password    = document.getElementById('password');
 const confirmar   = document.getElementById('confirmar_password');
 const btnRegistrar = document.getElementById('btnRegistrar');
 
-// ======================================================
-// 2. Función para mostrar error en un campo
-// ======================================================
 function mostrarError(campoId, errorId, mensaje) {
     const campo = document.getElementById(campoId);
     const error = document.getElementById(errorId);
@@ -25,9 +17,7 @@ function mostrarError(campoId, errorId, mensaje) {
     error.textContent = mensaje;
 }
 
-// ======================================================
-// 3. Función para mostrar éxito en un campo
-// ======================================================
+
 function mostrarExito(campoId, errorId) {
     const campo = document.getElementById(campoId);
     const error = document.getElementById(errorId);
@@ -36,9 +26,7 @@ function mostrarExito(campoId, errorId) {
     error.textContent = '';
 }
 
-// ======================================================
-// 4. Validaciones de cada campo
-// ======================================================
+
 
 function validarDocTipo() {
     if (docTipo.value === '') {

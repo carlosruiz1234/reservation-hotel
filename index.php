@@ -43,7 +43,7 @@ if(isset($_GET['action'])){
     elseif($_GET['action'] == 'borrarReserva'){
         $controllerBase->borrarReserva($_GET['id']);
     }
-=======
+
 
 
 } else {

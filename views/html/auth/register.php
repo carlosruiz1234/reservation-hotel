@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse - Hotel Paradise</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="<?= SITE_URL ?>css/styles.css">
 
 </head>
 <body class="bg-light">
 
 
-=======
+
     <link rel="stylesheet" href="<?= SITE_URL ?>/css/styles.css">
 </head>
 <body class="bg-light">
 
 <!--barra de nav -->
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php">🏨 Hotel Paradise</a>
@@ -36,22 +36,22 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?= SITE_URL ?>index.php?action=getFormLoginUser"
-<<<<<<< HEAD
+
                        class="btn btn-purple btn-sm fw-bold">Ingresar</a>
-=======
+
                        class="btn btn-purple btn-sm text-dark fw-bold">Ingresar</a>
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<<<<<<< HEAD
-<!--FORM -->
-=======
+
+
+
 <!-- form  -->
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-7 col-lg-6">
@@ -65,7 +65,7 @@
                         <div class="alert alert-danger"><?= $_SESSION['errors']['general'] ?></div>
                     <?php endif; ?>
 
-<<<<<<< HEAD
+
                     <form action="<?= SITE_URL ?>index.php?action=registerUser" method="POST" id="formRegistro">
 
                         <div class="mb-3">
@@ -95,7 +95,7 @@
                             <div class="invalid-feedback" id="error_document_number">
                                 <?= $_SESSION['errors']['document_number'] ?? '' ?>
                             </div>
-=======
+
                     <form action="<?= SITE_URL ?>index.php?action=registerUser" method="POST">
 
                         <div class="mb-3">
@@ -121,13 +121,13 @@
                             <?php if(isset($_SESSION['errors']['document_number'])): ?>
                                 <div class="invalid-feedback"><?= $_SESSION['errors']['document_number'] ?></div>
                             <?php endif; ?>
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
                         </div>
 
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Nombre</label>
-<<<<<<< HEAD
+
                                 <input type="text" name="name" id="name"
                                     class="form-control <?= isset($_SESSION['errors']['name']) ? 'is-invalid' : '' ?>"
                                     placeholder="Tu nombre"
@@ -157,7 +157,6 @@
                             <div class="invalid-feedback" id="error_phone">
                                 <?= $_SESSION['errors']['phone'] ?? '' ?>
                             </div>
-=======
                                 <input type="text" name="name"
                                     class="form-control <?= isset($_SESSION['errors']['name']) ? 'is-invalid' : '' ?>"
                                     placeholder="Tu nombre"
@@ -188,12 +187,12 @@
                             <?php if(isset($_SESSION['errors']['phone'])): ?>
                                 <div class="invalid-feedback"><?= $_SESSION['errors']['phone'] ?></div>
                             <?php endif; ?>
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Correo electrónico</label>
-<<<<<<< HEAD
+
                             <input type="email" name="email" id="email"
                                 class="form-control <?= isset($_SESSION['errors']['email']) ? 'is-invalid' : '' ?>"
                                 placeholder="correo@ejemplo.com"
@@ -226,7 +225,7 @@
                         <input type="hidden" name="role_id" value="2">
 
                         <button type="submit" id="btnRegistrar" class="btn w-100 py-2 fw-bold" disabled>
-=======
+
                             <input type="email" name="email"
                                 class="form-control <?= isset($_SESSION['errors']['email']) ? 'is-invalid' : '' ?>"
                                 placeholder="correo@ejemplo.com"
@@ -260,7 +259,7 @@
                         <input type="hidden" name="role_id" value="2">
 
                         <button type="submit" class=" btn-purple w-100 py-2 fw-bold">
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
                             Crear cuenta
                         </button>
 
@@ -284,11 +283,10 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<<<<<<< HEAD
+
 <script src="<?= SITE_URL ?>views/html/auth/script.js"></script>
 
 
-=======
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
 </body>
 </html>

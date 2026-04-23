@@ -11,12 +11,12 @@ h2, h3 {
 
 
 .navbar {
-<<<<<<< HEAD
+
     background: rgba(0,0,0,0.3) !important;
     backdrop-filter: blur(10px);
-=======
+
     height: 65px;
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
 }
 
 
@@ -50,7 +50,7 @@ h2, h3 {
 .container-down{
     background-color:#d6c0ff
 }
-<<<<<<< HEAD
+
     
 #btnRegistrar:disabled {
     background-color: #aaa;
@@ -176,5 +176,5 @@ h2, h3 {
     .badge-pendiente   { background: #ffc107; color: #000; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
     .badge-confirmada  { background: #198754; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
     .badge-cancelada   { background: #dc3545; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
-=======
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
+
+
