@@ -7,8 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= SITE_URL ?>css/styles.css">
 </head>
-<body>
 
+<body>
 <!-- barra  -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
@@ -58,47 +58,36 @@
     </div>
 
     <div class="carousel-inner">
-<<<<<<< HEAD
-        <div class="carousel-item  active">
-            <img src="https://plus.unsplash.com/premium_photo-1733342441106-96a5e23b2c9f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-=======
+
         <div class="carousel-item active">
-            <img src="https://i.pinimg.com/1200x/d0/40/33/d040339bfecace8ceb63594b05e8eabe.jpg"
->>>>>>> e6694ff46042b2494fef28f3f18d4e126e6eaeea
-                 class="d-block w-100" style="height:550px; object-fit:cover;" alt="Hotel Paradise">
+            <img src="https://plus.unsplash.com/premium_photo-1733342441106-96a5e23b2c9f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                 class="d-block w-100" style="height:550px; object-fit:cover; opacity: 0.9;" alt="Hotel Paradise">
             <div class="carousel-caption d-none d-md-block">
-                <h2 class="display-5 fw-bold">Bienvenido a Hotel Paradise</h2>
-                <p class="fs-5">Tu descanso perfecto nos espera</p>
+                <h2 class= "display-5 fw-bold" style="color: #0D0D0D; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">Bienvenido a Hotel Paradise</h2>
+                <p class="fs-5" style="color: #0D0D0D; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); ">Tu descanso perfecto nos espera</p>
                 <a href="<?= SITE_URL ?>index.php?action=getFormRegisterUser"
                    class="btn btn-warning btn-lg mt-2 text-dark fw-bold">Reservar ahora</a>
             </div>
         </div>
 
         <div class="carousel-item">
-
             <img src="https://images.unsplash.com/photo-1720694924759-2a2daaa98987?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-
-            <img src="https://i.pinimg.com/736x/d4/49/a2/d449a298570c712918903d82ef9445de.jpg">
-
-                 class="d-block w-100" style="height:550px; object-fit:cover;" alt="Habitaciones">
+                 class="d-block w-100" style="height:550px; object-fit:cover; opacity: 0.9;" alt="Bar">
             <div class="carousel-caption d-none d-md-block">
-                <h2 class="display-5 fw-bold">servicio Bar</h2>
-                <p class="fs-5">Para disfrutar con los que mas quieres</p>
+                <h2 class="display-5 fw-bold"style="color: #ffffff; text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);">Servicio Bar</h2>
+                <p class="fs-5" style="color: #ffffff; text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);">Para disfrutar con los que mas quieres</p>
             </div>
         </div>
 
         <div class="carousel-item">
-
             <img src="https://plus.unsplash.com/premium_photo-1764687875096-2667794f2ac5?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-
-            <img src="https://i.pinimg.com/736x/6d/72/b3/6d72b35fd6efedcd0ef6a425c4237275.jpg"
-
-                 class="d-block w-100" style="height:550px; object-fit:cover;" alt="Piscina">
+                 class="d-block w-100" style="height:550px; object-fit:cover; opacity: 0.9;" alt="Habitaciones">
             <div class="carousel-caption d-none d-md-block">
-                <h2 class="display-5 fw-bold">Habitaciones de lujo</h2>
-                <p class="fs-5">Relájate y disfruta de un alojamiento de primera clase</p>
+                <h2 class="display-5 fw-bold"style="color: #ffffff; text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);">Habitaciones de lujo</h2>
+                <p class="fs-5"style="color: #ffffff; text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);">Relájate y disfruta de un alojamiento de primera clase</p>
             </div>
         </div>
+
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carruselHotel" data-bs-slide="prev">
@@ -119,7 +108,7 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow text-center h-100 p-3">
                     <div class="card-body">
-                        <div class="fs-1 mb-3">🛏️</div>
+                        <div class="fs-1 mb-3"></div>
                         <h5 class="fw-bold">Habitaciones Premium</h5>
                         <p class="text-muted">Habitaciones amplias con cama king size, TV 4K, minibar y vista al mar.</p>
                     </div>
@@ -128,7 +117,7 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow text-center h-100 p-3">
                     <div class="card-body">
-                        <div class="fs-1 mb-3">🍽️</div>
+                        <div class="fs-1 mb-3"></div>
                         <h5 class="fw-bold">Restaurante Gourmet</h5>
                         <p class="text-muted">Cocina internacional preparada por chefs de talla mundial, disponible las 24 horas.</p>
                     </div>
@@ -137,7 +126,7 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow text-center h-100 p-3">
                     <div class="card-body">
-                        <div class="fs-1 mb-3">🏊</div>
+                        <div class="fs-1 mb-3"></div>
                         <h5 class="fw-bold">Piscina & Spa</h5>
                         <p class="text-muted">Relájate en nuestra piscina olímpica con tratamientos de lujo personalizados.</p>
                     </div>
@@ -199,7 +188,7 @@
 
 <!-- footer -->
 <footer class="bg-purple text-white text-center py-4">
-    <p class="mb-0">© 2024 Hotel Paradise &nbsp;|&nbsp; Todos los derechos reservados</p>
+    <p class="mb-0">© 2024 Hotel Paradise  |  Todos los derechos reservados</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

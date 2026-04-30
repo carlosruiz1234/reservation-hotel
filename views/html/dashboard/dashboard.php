@@ -31,7 +31,6 @@
     </div>
 </nav>
 
-
 <div class="container py-5">
 
     <?php if(isset($_SESSION['success'])): ?>
@@ -42,7 +41,7 @@
     <div class="bienvenida-card mb-4">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
             <div>
-                <h1>👋 Hola, <?= $_SESSION['usuario']['name'] ?>!</h1>
+                <h1> Hola, <?= $_SESSION['usuario']['name'] ?>!</h1>
                 <p class="mb-0">Bienvenido a tu panel. Aquí puedes gestionar tus reservaciones.</p>
             </div>
             <a href="<?= SITE_URL ?>index.php?action=getFormReserva" class="btn-crear">
@@ -51,12 +50,11 @@
         </div>
     </div>
 
-    <div class="reservas-section">
-        <h4>📋 Mis reservaciones</h4>
+    <div class="reservas-section color-mis-reservas">
+        <h4> Mis reservaciones</h4>
 
         <?php if(empty($reservas)): ?>
             <div class="sin-reservas">
-                <p style="font-size:3rem;">🛎️</p>
                 <p>Aún no tienes reservaciones.</p>
                 <p>Haz clic en <strong>"+ Crear reserva"</strong> para comenzar.</p>
             </div>
@@ -91,12 +89,21 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="<?= SITE_URL ?>index.php?action=getFormEditarReserva&id=<?= $reserva['id'] ?>"
-                                       class="btn btn-sm btn-warning me-1">✏️ Editar</a>
-                                    <a href="<?= SITE_URL ?>index.php?action=borrarReserva&id=<?= $reserva['id'] ?>"
-                                       class="btn btn-sm btn-danger"
-                                       onclick="return confirm('¿Seguro que quieres eliminar esta reserva?')">
-                                        🗑️ Borrar
+                                    <?php if($reserva['nombre_estado'] != 'cancelada'): ?>
+                                        <a href="<?= SITE_URL ?>index.php?action=getFormEditarReserva&id=<?= $reserva['id'] ?>"
+                                        class="btn btn-sm btn-warning me-1"> Editar</a>
+                                        <a href="<?= SITE_URL ?>index.php?action=cancelarReserva&id=<?= $reserva['id'] ?>"
+                                        class="btn btn-sm btn-danger me-1"
+                                        onclick="return confirm('¿Seguro que quieres cancelar esta reserva?')">
+                                            ❌ Cancelar
+                                        </a>
+                                    <?php else: ?>
+                                        <span class="text-muted small me-1">Sin acciones</span>
+                                    <?php endif; ?>
+
+                                    <a href="<?= SITE_URL ?>index.php?action=descargarPDF&id=<?= $reserva['id'] ?>"
+                                    class="btn btn-sm btn-purple">
+                                        📄 PDF
                                     </a>
                                 </td>
                             </tr>

@@ -6,23 +6,21 @@
     <title>Editar Reserva - Hotel Paradise</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= SITE_URL ?>css/styles.css">
-
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php">🏨 Hotel Paradise</a>
+        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php">Hotel Paradise</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto align-items-center gap-2">
                 <li class="nav-item">
                     <span class="nav-link text-warning fw-bold">
-                        👤 <?= $_SESSION['usuario']['name'] . ' ' . $_SESSION['usuario']['last_name'] ?>
+                        <?= $_SESSION['usuario']['name'] . ' ' . $_SESSION['usuario']['last_name'] ?>
                     </span>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= SITE_URL ?>index.php?action=logout"
-                       class="btn btn-outline-danger btn-sm">Cerrar sesión</a>
+                    <a href="<?= SITE_URL ?>index.php?action=logout" class="btn btn-outline-danger btn-sm">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
@@ -30,10 +28,7 @@
 </nav>
 
 <div class="container py-5">
-
-    <a href="<?= SITE_URL ?>index.php?action=dashboard" class="btn-volver d-inline-block mb-4">
-        ← Volver al dashboard
-    </a>
+    <a href="<?= SITE_URL ?>index.php?action=dashboard" class="btn-volver d-inline-block mb-4">← Volver al dashboard</a>
 
     <div class="row justify-content-center">
         <div class="col-md-7 col-lg-6">
@@ -50,23 +45,37 @@
 
                     <input type="hidden" name="id" value="<?= $datosReserva['id'] ?>">
 
+                    <!-- Paso 1: Tipo de habitación -->
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Habitación</label>
-                        <select name="tipo_habitacion"
-                            class="form-select <?= isset($_SESSION['errors']['tipo_habitacion']) ? 'is-invalid' : '' ?>">
-                            <option value="">-- Selecciona una habitación --</option>
-                            <?php foreach($habitaciones as $hab): ?>
-                                <option value="<?= $hab['num_habitacion'] ?>"
-                                    <?= (($_SESSION['old']['tipo_habitacion'] ?? $datosReserva['tipo_habitacion']) == $hab['num_habitacion']) ? 'selected' : '' ?>>
-                                    Hab. <?= $hab['num_habitacion'] ?> — <?= $hab['categoria'] ?> — $<?= number_format($hab['precio'], 0, ',', '.') ?>/noche — Max <?= $hab['max_personas'] ?> personas
+                        <label class="form-label fw-semibold">Tipo de habitación</label>
+                        <select name="id_categoria" id="id_categoria"
+                            class="form-select <?= isset($_SESSION['errors']['id_categoria']) ? 'is-invalid' : '' ?>">
+                            <option value="">-- Selecciona un tipo --</option>
+                            <?php foreach($categorias as $cat): ?>
+                                <option value="<?= $cat['id'] ?>"
+                                    <?= ($cat['id'] == $categoriaActual) ? 'selected' : '' ?>>
+                                    <?= $cat['nombre'] ?>
                                 </option>
                             <?php endforeach; ?>
+                        </select>
+                        <?php if(isset($_SESSION['errors']['id_categoria'])): ?>
+                            <div class="invalid-feedback"><?= $_SESSION['errors']['id_categoria'] ?></div>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Paso 2: Habitación específica (se llena con AJAX) -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Habitación</label>
+                        <select name="tipo_habitacion" id="tipo_habitacion"
+                            class="form-select <?= isset($_SESSION['errors']['tipo_habitacion']) ? 'is-invalid' : '' ?>">
+                            <option value="">-- Cargando habitaciones... --</option>
                         </select>
                         <?php if(isset($_SESSION['errors']['tipo_habitacion'])): ?>
                             <div class="invalid-feedback"><?= $_SESSION['errors']['tipo_habitacion'] ?></div>
                         <?php endif; ?>
                     </div>
 
+                    <!-- Fechas -->
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Fecha de entrada</label>
@@ -88,6 +97,7 @@
                         </div>
                     </div>
 
+                    <!-- Número de personas -->
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Número de personas</label>
                         <input type="number" name="num_personas"
@@ -99,6 +109,7 @@
                         <?php endif; ?>
                     </div>
 
+                    <!-- Método de pago -->
                     <div class="mb-4">
                         <label class="form-label fw-semibold">Método de pago</label>
                         <select name="id_metodo_pago"
@@ -116,9 +127,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <button type="submit" class="btn-guardar">
-                        Guardar cambios
-                    </button>
+                    <button type="submit" class="btn-guardar">Guardar cambios</button>
 
                 </form>
 
@@ -133,5 +142,56 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const selectCategoria  = document.getElementById('id_categoria');
+const selectHabitacion = document.getElementById('tipo_habitacion');
+
+// habitación actual guardada en la reserva
+const habitacionActual = "<?= $datosReserva['tipo_habitacion'] ?>";
+
+async function cargarHabitaciones(idCategoria, seleccionar) {
+    if (!idCategoria) {
+        selectHabitacion.innerHTML = '<option value="">-- Primero selecciona un tipo --</option>';
+        selectHabitacion.disabled = true;
+        return;
+    }
+
+    try {
+        const response = await fetch(`index.php?action=getHabitacionesPorCategoria&id_categoria=${idCategoria}`);
+        const result   = await response.json();
+
+        if (result.ok && result.data.length > 0) {
+            selectHabitacion.innerHTML = '<option value="">-- Selecciona una habitación --</option>';
+            result.data.forEach(hab => {
+                const selected = hab.num_habitacion == seleccionar ? 'selected' : '';
+                selectHabitacion.innerHTML += `<option value="${hab.num_habitacion}" ${selected}>
+                    Hab. ${hab.num_habitacion} — Max ${hab.max_personas} personas — $${Number(hab.precio).toLocaleString('es-CO')}/noche
+                </option>`;
+            });
+            selectHabitacion.disabled = false;
+        } else {
+            selectHabitacion.innerHTML = '<option value="">No hay habitaciones disponibles</option>';
+            selectHabitacion.disabled = true;
+        }
+
+    } catch (error) {
+        console.log('Error al cargar habitaciones:', error);
+    }
+}
+
+// al cargar la página carga las habitaciones del tipo actual
+window.addEventListener('load', () => {
+    const categoriaInicial = selectCategoria.value;
+    if (categoriaInicial) {
+        cargarHabitaciones(categoriaInicial, habitacionActual);
+    }
+});
+
+// al cambiar el tipo carga las habitaciones del nuevo tipo
+selectCategoria.addEventListener('change', () => {
+    cargarHabitaciones(selectCategoria.value, '');
+});
+</script>
+
 </body>
 </html>

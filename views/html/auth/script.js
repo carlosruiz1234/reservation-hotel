@@ -1,4 +1,3 @@
-
 const docTipo     = document.getElementById('document_type_id');
 const docNumero   = document.getElementById('document_number');
 const nombre      = document.getElementById('name');
@@ -17,7 +16,6 @@ function mostrarError(campoId, errorId, mensaje) {
     error.textContent = mensaje;
 }
 
-
 function mostrarExito(campoId, errorId) {
     const campo = document.getElementById(campoId);
     const error = document.getElementById(errorId);
@@ -25,7 +23,6 @@ function mostrarExito(campoId, errorId) {
     campo.classList.add('is-valid');
     error.textContent = '';
 }
-
 
 
 function validarDocTipo() {
@@ -47,6 +44,10 @@ function validarDocNumero() {
         mostrarError('document_number', 'error_document_number', 'Solo puede contener números');
         return false;
     }
+    if (val.length < 10) {
+        mostrarError('document_number', 'error_document_number', 'Debe tener al menos 10 dígitos');
+        return false;
+    }
     if (val.length > 20) {
         mostrarError('document_number', 'error_document_number', 'No puede tener más de 20 caracteres');
         return false;
@@ -61,6 +62,10 @@ function validarNombre() {
         mostrarError('name', 'error_name', 'El nombre es requerido');
         return false;
     }
+    if (val.length < 3) {
+        mostrarError('name', 'error_name', 'Debe tener al menos 3 caracteres');
+        return false;
+    }
     if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(val)) {
         mostrarError('name', 'error_name', 'Solo puede contener letras');
         return false;
@@ -73,6 +78,10 @@ function validarApellido() {
     const val = apellido.value.trim();
     if (val === '') {
         mostrarError('last_name', 'error_last_name', 'El apellido es requerido');
+        return false;
+    }
+    if (val.length < 3) {
+        mostrarError('last_name', 'error_last_name', 'Debe tener al menos 3 caracteres');
         return false;
     }
     if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(val)) {
@@ -91,6 +100,10 @@ function validarTelefono() {
     }
     if (!/^[0-9]+$/.test(val)) {
         mostrarError('phone', 'error_phone', 'Solo puede contener números');
+        return false;
+    }
+    if (val.length < 10) {
+        mostrarError('phone', 'error_phone', 'Debe tener al menos 10 dígitos');
         return false;
     }
     if (val.length > 10) {
@@ -160,19 +173,18 @@ function validarConfirmar() {
 }
 
 function revisarFormulario() {
-    const todoOk = 
-        validarDocTipo()    &&
-        validarDocNumero()  &&
-        validarNombre()     &&
-        validarApellido()   &&
-        validarTelefono()   &&
-        validarEmail()      &&
-        validarPassword()   &&
+    const todoOk =
+        validarDocTipo()   &&
+        validarDocNumero() &&
+        validarNombre()    &&
+        validarApellido()  &&
+        validarTelefono()  &&
+        validarEmail()     &&
+        validarPassword()  &&
         validarConfirmar();
 
     btnRegistrar.disabled = !todoOk;
 }
-
 
 docTipo.addEventListener('change', revisarFormulario);
 docNumero.addEventListener('blur', revisarFormulario);

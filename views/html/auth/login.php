@@ -15,7 +15,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php">🏨 Hotel Paradise</a>
+        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php"> Hotel Paradise</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,7 +38,7 @@
 </nav>
 
 
-<!--  form -->
+
 
 <!-- este es el form -->
 
@@ -46,7 +46,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5 col-lg-4">
             <div class="card border-0 shadow-sm">
-                <div class="card-body p-4 p-md-5">
+                <div class="card-body  p-4 p-md-5">
 
                     <h3 class="text-center fw-bold mb-1"> Iniciar sesión</h3>
                     <p class="text-center text-muted mb-4">Ingresa a tu cuenta para reservar</p>

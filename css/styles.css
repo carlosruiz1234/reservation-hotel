@@ -8,11 +8,11 @@ h2, h3 {
     font-family: 'Playfair Display', serif;
 }
 
-
+/*iinico de estilos pro*/
 
 .navbar {
 
-    background: rgba(0,0,0,0.3) !important;
+    background: rgba(0,0,0,0.3) ;
     backdrop-filter: blur(10px);
 
     height: 65px;
@@ -64,6 +64,16 @@ h2, h3 {
     border-color: #6f42c1;
     color: #fff;
 }
+
+
+.color-mis-reservas {
+    background-color: #0a003c !important;
+}
+
+/*fin de estilos pro*/
+
+
+
 /* estilos de form editar reserva*/
 .navbar {
     background: rgba(0,0,0,0.3) !important;
@@ -100,81 +110,78 @@ h2, h3 {
 
 
 
-/*estilos de form reserva */
 
 
 .form-card {
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+background: white;
+border-radius: 16px;
+padding: 40px;
+box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 .btn-reservar {
-    background: #6f42c1;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: 700;
-    width: 100%;
-    font-size: 1rem;
-    transition: background 0.2s;
+background: #6f42c1;
+color: white;
+border: none;
+padding: 12px;
+border-radius: 8px;
+font-weight: 700;
+width: 100%;
+font-size: 1rem;
+transition: background 0.2s;
 }
 .btn-reservar:hover { background: #5a32a3; color: white; }
 .btn-volver { color: rgba(255,255,255,0.7); font-size: 0.9rem; text-decoration: none; }
 .btn-volver:hover { color: white; }
 
-/*estilos de dashboard */
 
-    .bienvenida-card {
-        background: linear-gradient(135deg, #6f42c1, #a855f7);
-        border-radius: 16px;
-        padding: 40px;
-        color: white;
-        box-shadow: 0 10px 40px rgba(111,66,193,0.4);
-    }
-    .bienvenida-card h1 { font-size: 2rem; font-weight: 800; }
-    .btn-crear {
-        background: white;
-        color: #6f42c1;
-        font-weight: 700;
-        padding: 12px 30px;
-        border-radius: 8px;
-        font-size: 1rem;
-        transition: all 0.2s;
-        text-decoration: none;
-        display: inline-block;
-    }
-    .btn-crear:hover {
-        background: #f3e8ff;
-        transform: translateY(-2px);
-        color: #6f42c1;
-    }
-    .reservas-section {
-        background: rgba(255,255,255,0.05);
-        border-radius: 16px;
-        padding: 30px;
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-    .reservas-section h4 { color: white; font-weight: 700; margin-bottom: 20px; }
-    .sin-reservas {
-        text-align: center;
-        padding: 50px 20px;
-        color: rgba(255,255,255,0.5);
-    }
-    .tabla-reservas { background: white; border-radius: 10px; overflow: hidden; }
-    .tabla-reservas th {
-        background: #6f42c1;
-        color: white;
-        font-weight: 600;
-        padding: 12px 16px;
-    }
-    .tabla-reservas td { padding: 12px 16px; vertical-align: middle; }
-    .tabla-reservas tr:nth-child(even) { background: #f8f5ff; }
+.bienvenida-card {
+    background: linear-gradient(135deg, #190047, #3e0078);
+    border-radius: 16px;
+    padding: 40px;
+    color: white;
+    box-shadow: 0 10px 40px rgba(111,66,193,0.4);
+}
+.bienvenida-card h1 { font-size: 2rem; font-weight: 800; }
+.btn-crear {
+    background: white;
+    color: #6f42c1;
+    font-weight: 700;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-crear:hover {
+    background: #f3e8ff;
+    transform: translateY(-2px);
+    color: #6f42c1;
+}
+.reservas-section {
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.reservas-section h4 { color: white; font-weight: 700; margin-bottom: 20px; }
+.sin-reservas {
+    text-align: center;
+    padding: 50px 20px;
+    color: rgba(255,255,255,0.5);
+}
+.tabla-reservas { background: white; border-radius: 10px; overflow: hidden; }
+.tabla-reservas th {
+    background: #180044;
+    color: white;
+    font-weight: 600;
+    padding: 12px 16px;
+}
+.tabla-reservas td { padding: 12px 16px; vertical-align: middle; }
+.tabla-reservas tr:nth-child(even) { background: #f8f5ff; }
 
-    /* badges de estado */
-    .badge-pendiente   { background: #ffc107; color: #000; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
-    .badge-confirmada  { background: #198754; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
-    .badge-cancelada   { background: #dc3545; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
+.badge-pendiente   { background: #ffc107; color: #000; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
+.badge-confirmada  { background: #198754; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
+.badge-cancelada   { background: #dc3545; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
 
 

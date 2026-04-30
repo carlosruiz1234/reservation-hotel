@@ -1,52 +1,46 @@
 <?php
 
-require_once 'controllers/controllerBase.php';
 require_once 'config/config.php';
-require_once 'models/conexion.php';
+require_once 'models/user.php';
+require_once 'models/reserva.php';
+require_once 'controllers/controllerUser.php';
+require_once 'controllers/controllerReserva.php';
 
-$controllerBase = new ControllerBase();
+$user    = new ControllerUser();
+$reserva = new ControllerReserva();
 
-// Enrutador
-if(isset($_GET['action'])){
+if (isset($_GET['action'])) {
 
-    if($_GET['action'] == 'getFormRegisterUser'){
-        $controllerBase->verPaginaInicio('views/html/auth/register.php');
-    }
-    elseif($_GET['action'] == 'registerUser'){
-        $controllerBase->registerUser($_POST);
-    }
-    elseif($_GET['action'] == 'getFormLoginUser'){
-        $controllerBase->verPaginaInicio('views/html/auth/login.php');
-    }
-    elseif($_GET['action'] == 'loginUser'){
-        $controllerBase->loginUser($_POST);
-    }
-    elseif($_GET['action'] == 'logout'){
-        $controllerBase->logout();
-    }
-
-    elseif($_GET['action'] == 'dashboard'){
-        $controllerBase->verDashboard();
-    }
-    elseif($_GET['action'] == 'getFormReserva'){
-        $controllerBase->verFormReserva();
-    }
-    elseif($_GET['action'] == 'crearReserva'){
-        $controllerBase->crearReserva($_POST);   
-    }
-    elseif($_GET['action'] == 'getFormEditarReserva'){
-        $controllerBase->verFormEditarReserva($_GET['id']);
-    }
-    elseif($_GET['action'] == 'editarReserva'){
-        $controllerBase->editarReserva($_POST);
-    }
-    elseif($_GET['action'] == 'borrarReserva'){
-        $controllerBase->borrarReserva($_GET['id']);
+    if ($_GET['action'] == 'getFormRegisterUser') {
+        $user->verPaginaInicio('views/html/auth/register.php');
+    } elseif ($_GET['action'] == 'registerUser') {
+        $user->registerUser($_POST);
+    } elseif ($_GET['action'] == 'getFormLoginUser') {
+        $user->verPaginaInicio('views/html/auth/login.php');
+    } elseif ($_GET['action'] == 'loginUser') {
+        $user->loginUser($_POST);
+    } elseif ($_GET['action'] == 'logout') {
+        $user->logout();
+    } elseif ($_GET['action'] == 'dashboard') {
+        $reserva->verDashboard();
+    } elseif ($_GET['action'] == 'getFormReserva') {
+        $reserva->verFormReserva();
+    } elseif ($_GET['action'] == 'crearReserva') {
+        $reserva->crearReserva($_POST);
+    } elseif ($_GET['action'] == 'getFormEditarReserva') {
+        $reserva->verFormEditarReserva($_GET['id']);
+    } elseif ($_GET['action'] == 'editarReserva') {
+        $reserva->editarReserva($_POST);
+    } elseif ($_GET['action'] == 'cancelarReserva') {
+        $reserva->cancelarReserva($_GET['id']);
+    } elseif ($_GET['action'] == 'getHabitacionesPorCategoria') {
+        $reserva->getHabitacionesPorCategoria();
+    } elseif ($_GET['action'] == 'descargarPDF') {
+    $reserva->descargarPDF($_GET['id']);
     }
 
-
-
-} else {
-    $controllerBase->verPaginaInicio('views/html/home.php');
+    else{
+        $user->verPaginaInicio('views/html/home.php');
+    }
 }
 ?>
