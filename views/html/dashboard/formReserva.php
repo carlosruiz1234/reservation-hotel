@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php"> Hotel Paradise</a>
+        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php"> Hotel Blox</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto align-items-center gap-2">
                 <li class="nav-item">
@@ -53,7 +53,7 @@
                                 <option value="<?= $cat['id'] ?>"
                                     <?= (($_SESSION['old']['id_categoria'] ?? '') == $cat['id']) ? 'selected' : '' ?>>
                                     <?= $cat['nombre'] ?>
-                                </option>
+                                </option>   
                             <?php endforeach; ?>
                         </select>
                         <?php if(isset($_SESSION['errors']['id_categoria'])): ?>
@@ -144,13 +144,14 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-const selectCategoria   = document.getElementById('id_categoria');
-const selectHabitacion  = document.getElementById('tipo_habitacion');
+const selectCategoria  = document.getElementById('id_categoria');
+const selectHabitacion = document.getElementById('tipo_habitacion');
 
-selectCategoria.addEventListener('change', async () => {
-    const idCategoria = selectCategoria.value;
+// Habitación que venía seleccionada antes del error (si hubo resubmit)
+const habitacionPrevia = "<?= $_SESSION['old']['tipo_habitacion'] ?? '' ?>";
 
-    if (idCategoria === '') {
+async function cargarHabitaciones(idCategoria, seleccionar = '') {
+    if (!idCategoria) {
         selectHabitacion.innerHTML = '<option value="">-- Primero selecciona un tipo --</option>';
         selectHabitacion.disabled = true;
         return;
@@ -163,8 +164,9 @@ selectCategoria.addEventListener('change', async () => {
         if (result.ok && result.data.length > 0) {
             selectHabitacion.innerHTML = '<option value="">-- Selecciona una habitación --</option>';
             result.data.forEach(hab => {
-                selectHabitacion.innerHTML += `<option value="${hab.num_habitacion}">
-                    Hab. ${hab.num_habitacion} — Max ${hab.max_personas} personas — $${Number(hab.precio).toLocaleString('es-CO')}/noche
+                const selected = hab.num_habitacion == seleccionar ? 'selected' : '';
+                selectHabitacion.innerHTML += `<option value="${hab.num_habitacion}" ${selected}>
+                    Hab. ${hab.num_habitacion} — $${Number(hab.precio).toLocaleString('es-CO')}/noche
                 </option>`;
             });
             selectHabitacion.disabled = false;
@@ -176,8 +178,21 @@ selectCategoria.addEventListener('change', async () => {
     } catch (error) {
         console.log('Error al cargar habitaciones:', error);
     }
+}
+
+
+window.addEventListener('load', () => {
+    if (selectCategoria.value) {
+        cargarHabitaciones(selectCategoria.value, habitacionPrevia);
+    }
+});
+
+selectCategoria.addEventListener('change', () => {
+    cargarHabitaciones(selectCategoria.value, '');
 });
 </script>
+
+
 
 </body>
 </html>

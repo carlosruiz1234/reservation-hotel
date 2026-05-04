@@ -15,7 +15,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php"> Hotel Paradise</a>
+        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php"> Hotel Blox</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
             <span class="navbar-toggler-icon"></span>
         </button>

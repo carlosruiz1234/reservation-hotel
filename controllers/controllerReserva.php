@@ -117,7 +117,7 @@ class ControllerReserva {
         } else {
             $_SESSION['errors'] = ['general' => 'Error al actualizar la reserva.'];
             $_SESSION['old'] = $datos;
-            header('Location: ' . SITE_URL . 'index.php?action=getFormEditarReserva&id=' . $datos['id']);
+            header('Location: ' . SITE_URL . 'index.php?action=getFormEditarReserva&id=' . $datos['id']);// 
             exit;
         }
     }
@@ -133,6 +133,7 @@ class ControllerReserva {
         header('Location: ' . SITE_URL . 'index.php?action=dashboard');
         exit;
     }
+    
     public function descargarPDF($id) {
     if (!isset($_SESSION['usuario'])) {
         header('Location: ' . SITE_URL . 'index.php?action=getFormLoginUser');
@@ -147,8 +148,8 @@ class ControllerReserva {
         exit;
     }
 
-    require_once __DIR__ . '/../fpdf/fpdf186/fpdf.php'; 
-    require_once 'views/html/dashboard/pdfReserva.php';
+    require_once __DIR__ . '/../reportes/fpdf186/fpdf.php'; 
+    require_once 'reportes/pdfReserva.php';
     exit;
     }
 

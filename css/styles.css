@@ -1,7 +1,10 @@
 
-body{
-    background-color: #d6c0ff;
+
+body {
+    background: linear-gradient(135deg, #190047, #3e0078);
+    color: white;
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
 h2, h3 {
@@ -19,6 +22,12 @@ h2, h3 {
 
 }
 
+.bg-img-dashboard {
+    background-image: url('../image/dashboard.png') !important;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
 
 .card {
     transition: transform 0.25s;
@@ -41,12 +50,7 @@ h2, h3 {
     color: #5a32a3;
 
 }
-.bg-purple{
-    background-color: #b891ff;  
-    color: #ffffff;                 
-    border: none; 
 
-}
 .container-down{
     background-color:#d6c0ff
 }
@@ -67,7 +71,7 @@ h2, h3 {
 
 
 .color-mis-reservas {
-    background-color: #0a003c !important;
+    background-color: #0a003c ;
 }
 
 /*fin de estilos pro*/
@@ -76,7 +80,7 @@ h2, h3 {
 
 /* estilos de form editar reserva*/
 .navbar {
-    background: rgba(0,0,0,0.3) !important;
+    background: rgba(0,0,0,0.3) ;
     backdrop-filter: blur(10px);
 }
 .form-card {

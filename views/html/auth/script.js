@@ -201,3 +201,6 @@ password.addEventListener('blur', revisarFormulario);
 password.addEventListener('input', revisarFormulario);
 confirmar.addEventListener('blur', revisarFormulario);
 confirmar.addEventListener('input', revisarFormulario);
+
+
+

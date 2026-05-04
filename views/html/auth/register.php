@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
-    <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php"> Hotel Paradise</a>
+    <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php"> Hotel BLox</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -46,7 +46,7 @@
 
           <form action="<?= SITE_URL ?>index.php?action=registerUser" method="POST" id="formRegistro">
 
-            <!-- Tipo de documento -->
+            <!-- Tipo  -->
             <div class="mb-3">
               <label class="form-label fw-semibold">Tipo de documento</label>
               <select name="document_type_id" id="document_type_id"
@@ -64,7 +64,7 @@
               </div>
             </div>
 
-            <!-- Número de documento -->
+            <!-- Núm de documento -->
             <div class="mb-3">
               <label class="form-label fw-semibold">Número de documento</label>
               <input type="text" name="document_number" id="document_number"
@@ -100,7 +100,7 @@
               </div>
             </div>
 
-            <!-- Teléfono -->
+            <!-- Tel -->
             <div class="mb-3">
               <label class="form-label fw-semibold">Teléfono</label>
               <input type="text" name="phone" id="phone"
@@ -112,7 +112,7 @@
               </div>
             </div>
 
-            <!-- Correo -->
+            <!-- email -->
             <div class="mb-3">
               <label class="form-label fw-semibold">Correo electrónico</label>
               <input type="email" name="email" id="email"

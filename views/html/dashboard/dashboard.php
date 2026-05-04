@@ -7,11 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= SITE_URL ?>css/styles.css">
 </head>
-<body>
+<body >
 
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php">🏨 Hotel Paradise</a>
+        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php"> Hotel Blox</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto align-items-center gap-2">
                 <li class="nav-item">
@@ -19,7 +19,7 @@
                 </li>
                 <li class="nav-item">
                     <span class="nav-link text-warning fw-bold">
-                        👤 <?= $_SESSION['usuario']['name'] . ' ' . $_SESSION['usuario']['last_name'] ?>
+                         <?= $_SESSION['usuario']['name'] . ' ' . $_SESSION['usuario']['last_name'] ?>
                     </span>
                 </li>
                 <li class="nav-item">
@@ -64,7 +64,7 @@
                 <table class="table table-borderless mb-0">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            
                             <th>Habitación</th>
                             <th>Entrada</th>
                             <th>Salida</th>
@@ -77,7 +77,7 @@
                     <tbody>
                         <?php foreach($reservas as $reserva): ?>
                             <tr>
-                                <td><?= $reserva['id'] ?></td>
+                                <input type="hidden" value="<?= $reserva['id'] ?>">
                                 <td><?= $reserva['tipo_habitacion'] ?></td>
                                 <td><?= date('d/m/Y', strtotime($reserva['fecha_entrada'])) ?></td>
                                 <td><?= date('d/m/Y', strtotime($reserva['fecha_salida'])) ?></td>
@@ -95,7 +95,7 @@
                                         <a href="<?= SITE_URL ?>index.php?action=cancelarReserva&id=<?= $reserva['id'] ?>"
                                         class="btn btn-sm btn-danger me-1"
                                         onclick="return confirm('¿Seguro que quieres cancelar esta reserva?')">
-                                            ❌ Cancelar
+                                             Cancelar
                                         </a>
                                     <?php else: ?>
                                         <span class="text-muted small me-1">Sin acciones</span>

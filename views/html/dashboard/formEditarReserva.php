@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php">Hotel Paradise</a>
+        <a class="navbar-brand fw-bold fs-4" href="<?= SITE_URL ?>index.php">Hotel Blox</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto align-items-center gap-2">
                 <li class="nav-item">
@@ -34,7 +34,7 @@
         <div class="col-md-7 col-lg-6">
             <div class="form-card">
 
-                <h3 class="text-center fw-bold mb-1">✏️ Editar reserva</h3>
+                <h3 class="text-center fw-bold mb-1"> Editar reserva</h3>
                 <p class="text-center text-muted mb-4">Modifica los datos de tu reservación</p>
 
                 <?php if(isset($_SESSION['errors']['general'])): ?>
@@ -45,7 +45,6 @@
 
                     <input type="hidden" name="id" value="<?= $datosReserva['id'] ?>">
 
-                    <!-- Paso 1: Tipo de habitación -->
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Tipo de habitación</label>
                         <select name="id_categoria" id="id_categoria"
@@ -75,7 +74,6 @@
                         <?php endif; ?>
                     </div>
 
-                    <!-- Fechas -->
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Fecha de entrada</label>
@@ -97,7 +95,6 @@
                         </div>
                     </div>
 
-                    <!-- Número de personas -->
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Número de personas</label>
                         <input type="number" name="num_personas"
@@ -109,7 +106,6 @@
                         <?php endif; ?>
                     </div>
 
-                    <!-- Método de pago -->
                     <div class="mb-4">
                         <label class="form-label fw-semibold">Método de pago</label>
                         <select name="id_metodo_pago"
@@ -146,7 +142,6 @@
 const selectCategoria  = document.getElementById('id_categoria');
 const selectHabitacion = document.getElementById('tipo_habitacion');
 
-// habitación actual guardada en la reserva
 const habitacionActual = "<?= $datosReserva['tipo_habitacion'] ?>";
 
 async function cargarHabitaciones(idCategoria, seleccionar) {
@@ -159,13 +154,13 @@ async function cargarHabitaciones(idCategoria, seleccionar) {
     try {
         const response = await fetch(`index.php?action=getHabitacionesPorCategoria&id_categoria=${idCategoria}`);
         const result   = await response.json();
-
         if (result.ok && result.data.length > 0) {
+
             selectHabitacion.innerHTML = '<option value="">-- Selecciona una habitación --</option>';
             result.data.forEach(hab => {
                 const selected = hab.num_habitacion == seleccionar ? 'selected' : '';
                 selectHabitacion.innerHTML += `<option value="${hab.num_habitacion}" ${selected}>
-                    Hab. ${hab.num_habitacion} — Max ${hab.max_personas} personas — $${Number(hab.precio).toLocaleString('es-CO')}/noche
+                    Hab. ${hab.num_habitacion} — $${Number(hab.precio).toLocaleString('es-CO')}/noche
                 </option>`;
             });
             selectHabitacion.disabled = false;
@@ -179,7 +174,6 @@ async function cargarHabitaciones(idCategoria, seleccionar) {
     }
 }
 
-// al cargar la página carga las habitaciones del tipo actual
 window.addEventListener('load', () => {
     const categoriaInicial = selectCategoria.value;
     if (categoriaInicial) {
@@ -187,11 +181,9 @@ window.addEventListener('load', () => {
     }
 });
 
-// al cambiar el tipo carga las habitaciones del nuevo tipo
 selectCategoria.addEventListener('change', () => {
     cargarHabitaciones(selectCategoria.value, '');
-});
-</script>
+});</script>
 
 </body>
 </html>

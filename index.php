@@ -36,11 +36,12 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == 'getHabitacionesPorCategoria') {
         $reserva->getHabitacionesPorCategoria();
     } elseif ($_GET['action'] == 'descargarPDF') {
-    $reserva->descargarPDF($_GET['id']);
+        $reserva->descargarPDF($_GET['id']);
     }
 
+
+}
     else{
         $user->verPaginaInicio('views/html/home.php');
     }
-}
 ?>
