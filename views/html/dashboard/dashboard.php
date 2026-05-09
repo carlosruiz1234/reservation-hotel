@@ -51,7 +51,9 @@
     </div>
 
     <div class="reservas-section color-mis-reservas">
-        <h4> Mis reservaciones</h4>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4> Mis reservaciones</h4>
+        </div>
 
         <?php if(empty($reservas)): ?>
             <div class="sin-reservas">

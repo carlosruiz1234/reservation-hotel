@@ -5,9 +5,11 @@ require_once 'models/user.php';
 require_once 'models/reserva.php';
 require_once 'controllers/controllerUser.php';
 require_once 'controllers/controllerReserva.php';
+require_once 'controllers/controllerExcel.php';
 
 $user    = new ControllerUser();
 $reserva = new ControllerReserva();
+$excel   = new excelController();
 
 if (isset($_GET['action'])) {
 
@@ -37,11 +39,12 @@ if (isset($_GET['action'])) {
         $reserva->getHabitacionesPorCategoria();
     } elseif ($_GET['action'] == 'descargarPDF') {
         $reserva->descargarPDF($_GET['id']);
-    }
-
-
-}
-    else{
+    } elseif ($_GET['action'] == 'generarExcel'){
+        $excel->generarExcel();
+    } else {
         $user->verPaginaInicio('views/html/home.php');
     }
-?>
+}else{  
+        $user->verPaginaInicio('views/html/home.php');
+    }
+?>  

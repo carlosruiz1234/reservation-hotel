@@ -24,24 +24,29 @@
                     <a class="nav-link" href="<?= SITE_URL ?>index.php">Inicio</a>
                 </li>
                 <?php if(isset($_SESSION['usuario'])): ?>
-
                     <li class="nav-item">
-                        <span class="nav-link text-warning">
+                        <span class="nav-link text-warning fw-bold">
                              <?= $_SESSION['usuario']['name'] ?>
                         </span>
                     </li>
                     <li class="nav-item">
+                        <a href="<?= SITE_URL ?>index.php?action=dashboard" 
+                        class="btn btn-purple btn-sm me-1">
+                            Mi dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?= SITE_URL ?>index.php?action=logout"
-                           class="btn btn-outline-danger btn-sm">Cerrar sesión</a>
+                        class="btn btn-outline-danger btn-sm">Cerrar sesión</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
                         <a href="<?= SITE_URL ?>index.php?action=getFormRegisterUser"
-                           class="btn btn-outline-light btn-sm">Registrarse</a>
+                        class="btn btn-outline-light btn-sm">Registrarse</a>
                     </li>
                     <li class="nav-item">
                         <a href="<?= SITE_URL ?>index.php?action=getFormLoginUser"
-                           class="btn btn-purple btn-sm text-dark fw-bold">Ingresar</a>
+                        class="btn btn-warning btn-sm text-dark fw-bold">Ingresar</a>
                     </li>
                 <?php endif; ?>
             </ul>

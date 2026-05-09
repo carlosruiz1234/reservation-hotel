@@ -102,6 +102,8 @@ class Reserva {
         $db->close();
         return $filas;
     }
+
+
     public function getReservaCompletaById($id) {
         $db = $this->conectar();
         $sql = "SELECT reservas.*,
@@ -121,7 +123,7 @@ class Reserva {
         return $result->fetch_assoc();
     
     }
-
+    //::::::::::
     public function getCategoriaDeHabitacion($num_habitacion) {
         $db = $this->conectar();
         $sql = "SELECT id_categoria FROM habitaciones 
@@ -129,7 +131,25 @@ class Reserva {
         $result = $db->query($sql);
         $db->close();
         $fila = $result->fetch_assoc();
-        return $fila ? $fila['id_categoria'] : null;
+        return $fila['id_categoria'] ?? null;   
+    }
+    public function getTodasLasReservasPorUsuario($usuario_id) {
+    $db = $this->conectar();
+    $sql = "SELECT reservas.id,
+                   reservas.tipo_habitacion,
+                   reservas.fecha_entrada,
+                   reservas.fecha_salida,
+                   reservas.num_personas,
+                   estado.nombre AS nombre_estado,
+                   metodos_pago.nombre AS nombre_metodo
+            FROM reservas
+            JOIN estado ON reservas.estado = estado.id
+            JOIN metodos_pago ON reservas.id_metodo_pago = metodos_pago.id
+            WHERE reservas.usuario_id = '$usuario_id'
+            ORDER BY reservas.created_at DESC";
+    $result = $db->query($sql);
+    $db->close();
+    return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
 ?>
