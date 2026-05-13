@@ -53,6 +53,10 @@
     <div class="reservas-section color-mis-reservas">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h4> Mis reservaciones</h4>
+            <a href="<?= SITE_URL ?>index.php?action=generarExcel"
+                class="btn btn-success btn-sm fw-bold">
+                📊 Descargar Excel
+            </a>
         </div>
 
         <?php if(empty($reservas)): ?>

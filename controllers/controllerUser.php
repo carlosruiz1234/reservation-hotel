@@ -36,6 +36,10 @@ class ControllerUser {
         $resultado = $user->registerUser($datos);
 
         if ($resultado > 0) {
+            require_once 'controllers/controllerEmail.php';
+            $emailCtrl = new controllerEmail();
+            $emailCtrl->enviarBienvenida($datos['email'], $datos['name']);
+
             $_SESSION['success'] = '¡Cuenta creada! Ya puedes ingresar.';
             header('Location: ' . SITE_URL . 'index.php?action=getFormLoginUser');
             exit;
@@ -67,6 +71,11 @@ class ControllerUser {
                 'email'     => $resultado['email'],
                 'role_id'   => $resultado['role_id']
             ];
+
+            require_once 'controllers/ControllerEmail.php';
+            $emailCtrl = new ControllerEmail();
+            $emailCtrl->enviarLoginExitoso($resultado['email'], $resultado['name']);
+
             header('Location: ' . SITE_URL . 'index.php?action=dashboard');
             exit;
         } else {

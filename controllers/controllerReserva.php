@@ -56,6 +56,15 @@ class ControllerReserva {
         $resultado = $reserva->crearReserva($datos);
 
         if ($resultado > 0) {
+            // ✅ Enviar correo de confirmación de reserva
+            require_once 'controllers/controllerEmail.php';
+            $email = new controllerEmail();
+            $email->enviarReserva(
+                $_SESSION['usuario']['email'],
+                $_SESSION['usuario']['name'],
+                $datos
+            );
+
             $_SESSION['success'] = '¡Reserva creada exitosamente!';
             header('Location: ' . SITE_URL . 'index.php?action=dashboard');
             exit;
@@ -81,8 +90,8 @@ class ControllerReserva {
             exit;
         }
 
-        $categorias    = $reserva->getCategorias();
-        $metodosPago   = $reserva->getMetodosPago();
+        $categorias      = $reserva->getCategorias();
+        $metodosPago     = $reserva->getMetodosPago();
         $categoriaActual = $reserva->getCategoriaDeHabitacion($datosReserva['tipo_habitacion']);
 
         require_once 'views/html/dashboard/formEditarReserva.php';
@@ -117,7 +126,7 @@ class ControllerReserva {
         } else {
             $_SESSION['errors'] = ['general' => 'Error al actualizar la reserva.'];
             $_SESSION['old'] = $datos;
-            header('Location: ' . SITE_URL . 'index.php?action=getFormEditarReserva&id=' . $datos['id']);// 
+            header('Location: ' . SITE_URL . 'index.php?action=getFormEditarReserva&id=' . $datos['id']);
             exit;
         }
     }
@@ -133,24 +142,24 @@ class ControllerReserva {
         header('Location: ' . SITE_URL . 'index.php?action=dashboard');
         exit;
     }
-    
+
     public function descargarPDF($id) {
-    if (!isset($_SESSION['usuario'])) {
-        header('Location: ' . SITE_URL . 'index.php?action=getFormLoginUser');
+        if (!isset($_SESSION['usuario'])) {
+            header('Location: ' . SITE_URL . 'index.php?action=getFormLoginUser');
+            exit;
+        }
+
+        $reserva = new Reserva();
+        $datos = $reserva->getReservaCompletaById($id);
+
+        if (!$datos || $datos['usuario_id'] != $_SESSION['usuario']['id']) {
+            header('Location: ' . SITE_URL . 'index.php?action=dashboard');
+            exit;
+        }
+
+        require_once __DIR__ . '/../reportes/fpdf186/fpdf.php';
+        require_once 'reportes/pdfReserva.php';
         exit;
-    }
-
-    $reserva = new Reserva();
-    $datos = $reserva->getReservaCompletaById($id);
-
-    if (!$datos || $datos['usuario_id'] != $_SESSION['usuario']['id']) {
-        header('Location: ' . SITE_URL . 'index.php?action=dashboard');
-        exit;
-    }
-
-    require_once __DIR__ . '/../reportes/fpdf186/fpdf.php'; 
-    require_once 'reportes/pdfReserva.php';
-    exit;
     }
 
     public function validateReserva($datos) {
@@ -184,8 +193,5 @@ class ControllerReserva {
 
         return $errores;
     }
-
-    
-
 }
 ?>
