@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2026 a las 15:15:03
+-- Tiempo de generación: 21-05-2026 a las 23:55:24
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,6 +21,17 @@ SET time_zone = "+00:00";
 -- Base de datos: `hotel_reservas`
 --
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Volcado de datos para la tabla `categorias`
 --
@@ -30,6 +41,17 @@ INSERT INTO `categorias` (`id`, `nombre`) VALUES
 (2, 'Deluxe'),
 (3, 'Suite Presidencial');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `document_types`
+--
+
+CREATE TABLE `document_types` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Volcado de datos para la tabla `document_types`
 --
@@ -38,6 +60,18 @@ INSERT INTO `document_types` (`id`, `nombre`) VALUES
 (1, 'Cédula de Ciudadanía'),
 (2, 'Tarjeta de Identidad'),
 (3, 'Pasaporte');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado`
+--
+
+CREATE TABLE `estado` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `estado`
@@ -52,6 +86,23 @@ INSERT INTO `estado` (`id`, `nombre`, `descripcion`) VALUES
 (6, 'disponible', 'Habitacion disponible'),
 (7, 'ocupada', 'Habitacion ocupada'),
 (8, 'mantenimiento', 'Habitacion en mantenimiento');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `habitaciones`
+--
+
+CREATE TABLE `habitaciones` (
+  `id` int(11) NOT NULL,
+  `num_habitacion` varchar(10) DEFAULT NULL,
+  `id_categoria` int(11) DEFAULT NULL,
+  `num_camas` int(11) DEFAULT NULL,
+  `max_personas` int(11) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
+  `precio` decimal(10,2) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `habitaciones`
@@ -72,6 +123,17 @@ INSERT INTO `habitaciones` (`id`, `num_habitacion`, `id_categoria`, `num_camas`,
 (13, '302', 3, 3, 6, 'Suite presidencial piso 3', 350000.00, 6),
 (14, '303', 3, 3, 6, 'Suite presidencial piso 3', 350000.00, 6);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `metodos_pago`
+--
+
+CREATE TABLE `metodos_pago` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Volcado de datos para la tabla `metodos_pago`
 --
@@ -82,26 +144,59 @@ INSERT INTO `metodos_pago` (`id`, `nombre`) VALUES
 (3, 'Tarjeta crédito'),
 (4, 'Transferencia');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reservas`
+--
+
+CREATE TABLE `reservas` (
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
+  `tipo_habitacion` varchar(50) DEFAULT NULL,
+  `fecha_entrada` date DEFAULT NULL,
+  `fecha_salida` date DEFAULT NULL,
+  `num_personas` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_metodo_pago` int(11) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Volcado de datos para la tabla `reservas`
 --
 
 INSERT INTO `reservas` (`id`, `usuario_id`, `tipo_habitacion`, `fecha_entrada`, `fecha_salida`, `num_personas`, `created_at`, `id_metodo_pago`, `estado`) VALUES
-(1, 3, 'Estándar', '2026-04-18', '2026-04-23', 6, '2026-04-17 19:31:42', 1, 3),
-(2, 4, 'Deluxe', '2026-06-01', '2026-06-05', 5, '2026-04-21 02:26:05', 1, 3),
-(10, 5, '101', '2026-06-15', '2026-06-17', 9, '2026-04-23 19:43:09', 1, 5),
-(11, 9, '101', '2026-06-01', '2026-06-04', 4, '2026-04-27 19:42:48', 1, 5),
-(12, 9, '201', '2026-05-01', '2026-05-06', 3, '2026-04-28 01:59:42', 2, 5),
-(13, 10, '101', '2026-06-03', '2026-06-09', 9, '2026-04-29 13:25:17', 2, 3),
-(14, 9, '101', '2026-06-12', '2026-06-25', 5, '2026-04-30 05:01:07', 2, 3),
-(15, 9, '202', '2026-05-03', '2026-05-08', 7, '2026-04-30 19:27:23', 1, 3),
-(16, 9, '204', '2026-05-01', '2026-05-02', 10, '2026-04-30 21:45:53', 2, 3),
-(17, 9, '301', '2026-05-01', '2026-05-02', 10, '2026-04-30 21:46:46', 1, 3),
-(18, 9, '202', '2026-07-02', '2026-08-02', 9, '2026-04-30 22:14:38', 1, 3),
-(19, 12, '202', '2026-07-01', '2026-08-01', 5, '2026-05-07 02:48:57', 3, 3),
-(20, 12, '201', '2026-05-07', '2026-05-09', 5, '2026-05-07 02:49:54', 2, 3),
-(21, 13, '302', '2026-08-04', '2026-08-12', 6, '2026-05-10 20:59:11', 1, 3),
-(22, 13, '101', '2026-06-23', '2026-06-28', 2, '2026-05-13 12:52:52', 4, 3);
+(1, 3, 'Estándar', '2026-04-18', '2026-04-23', 6, '2026-04-18 00:31:42', 1, 3),
+(2, 4, 'Deluxe', '2026-06-01', '2026-06-05', 5, '2026-04-21 07:26:05', 1, 3),
+(10, 5, '101', '2026-06-15', '2026-06-17', 9, '2026-04-24 00:43:09', 1, 5),
+(11, 9, '101', '2026-06-01', '2026-06-04', 4, '2026-04-28 00:42:48', 1, 5),
+(12, 9, '201', '2026-05-01', '2026-05-06', 3, '2026-04-28 06:59:42', 2, 5),
+(13, 10, '101', '2026-06-03', '2026-06-09', 9, '2026-04-29 18:25:17', 2, 3),
+(14, 9, '101', '2026-06-12', '2026-06-25', 5, '2026-04-30 10:01:07', 2, 3),
+(15, 9, '202', '2026-05-03', '2026-05-08', 7, '2026-05-01 00:27:23', 1, 3),
+(16, 9, '204', '2026-05-01', '2026-05-02', 10, '2026-05-01 02:45:53', 2, 3),
+(17, 9, '301', '2026-05-01', '2026-05-02', 10, '2026-05-01 02:46:46', 1, 3),
+(18, 9, '202', '2026-07-02', '2026-08-02', 9, '2026-05-01 03:14:38', 1, 3),
+(19, 12, '202', '2026-07-01', '2026-08-01', 5, '2026-05-07 07:48:57', 3, 3),
+(20, 12, '201', '2026-05-07', '2026-05-09', 5, '2026-05-07 07:49:54', 2, 3),
+(21, 13, '302', '2026-08-04', '2026-08-12', 6, '2026-05-11 01:59:11', 1, 3),
+(22, 13, '101', '2026-06-23', '2026-06-28', 2, '2026-05-13 17:52:52', 4, 3),
+(23, 14, '205', '2026-05-22', '2026-06-22', 4, '2026-05-21 19:35:49', 1, 3),
+(24, 15, '301', '2026-05-22', '2026-05-30', 1, '2026-05-21 21:52:25', 3, 3),
+(25, 15, '101', '2026-05-22', '2026-05-30', 2, '2026-05-21 21:53:32', 4, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -111,24 +206,178 @@ INSERT INTO `roles` (`id`, `nombre`, `descripcion`) VALUES
 (1, 'admin', 'Administrador del sistema'),
 (2, 'cliente', 'Cliente del hotel');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `document_type_id` int(11) DEFAULT NULL,
+  `document_number` bigint(20) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `role_id` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `document_type_id`, `document_number`, `name`, `last_name`, `phone`, `email`, `password`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1109383455, 'Manuel ', 'Ortiz', '3204567896', 'manuelO@gmail.com', '$2y$10$WH..4dS5oMOCrgpdzICi9euLA/FV.w5ymeGoqpSd6IK6NAJuwVg9y', 2, '2026-04-11 17:28:59', '2026-04-11 17:28:59'),
-(2, 2, 123456789, 'Mayerly Aldana', 'Aranzales', '3213409567', 'mayerlyAldana@gmail.com', '$2y$10$vghiX6sjcO3pyHAsMdVvLuqOj/yHdcmVrg4p1sGLsSMBt1kYTsw1q', 2, '2026-04-16 23:28:22', '2026-04-16 23:28:22'),
-(3, 2, 11093834543, 'Manuel ', 'ds', '3145678965', 'manuel00@gmail.com', '$2y$10$q/x4LcPE7KIuSsPQBgnswu4OaSqMiKYgjyHSDVXvwWidNhM18NEO.', 2, '2026-04-16 23:50:19', '2026-04-16 23:50:19'),
-(4, 2, 1109383489, 'Carlos Ruiz', 'Aranzales', '3181216450', 'chivitaaaa2008@gmail.com', '$2y$10$ijeDDd0SBtdRctXuWALM2.xH3SmysJxZObaLyFE3OrKQNgocwS1Ka', 2, '2026-04-21 02:09:51', '2026-04-21 02:09:51'),
-(5, 2, 1109383488, 'Carlos Ruiz', 'Aranzales', '3212692321', 'chivitaaaa2000@gmail.com', '$2y$10$WJvUF8yZDbLl2SbGYgJhaO6IXtYG1y89gBxI5YDkSKXZtRXCsMCb2', 2, '2026-04-22 02:36:10', '2026-04-22 02:36:10'),
-(6, 1, 110938347, 'Carlos Ruiz', 'Aranzales', '3213409567', 'manuepO@gmail.com', '$2y$10$8AZ3gqt1p8vL4vv9Gjlje.zxi9mjJHI/kiRy0T6jH0wAznhcxVXE.', 0, '2026-04-23 21:38:35', '2026-04-23 21:38:35'),
-(7, 1, 123, 'Steven', 'Gomez', '3212692321', 'hola@gmail.com', '$2y$10$pYoZUXL6wIWNcYZS6Y8rtODMY7IBnAczTZgTwuSIwl2MysZ8U..t.', 0, '2026-04-23 21:45:01', '2026-04-23 21:45:01'),
-(8, 1, 32111, 's', 'd', '9', 'a@s.com', '$2y$10$c8VK6SsLKAKbmeTrXSqUNeOI/s8UgynZ3tpAfbM7An2DMhcPk9G4G', 0, '2026-04-23 21:47:17', '2026-04-23 21:47:17'),
-(9, 1, 1109383411, 'Carlos Ruiz', 'Aranzales', '3181216450', 'chivitaaaa200@gmail.com', '$2y$10$rPGqraiUXyjnq6Xgz3U/dekDzSqDWHcyqGId944nAdq/w7ogijUL.', 0, '2026-04-27 19:41:34', '2026-04-27 19:41:34'),
-(10, 1, 1109383486, 'Carlos Ruiz', 'Ochoa', '3213409567', 'chivitaaaa008@gmail.com', '$2y$10$MOMzsHc1KpMhco0BqXyGXOt1EVZ4Eva1RhKTcJuj67ncFArJbwbIi', 0, '2026-04-29 13:24:18', '2026-04-29 13:24:18'),
-(11, 1, 1109383422, 'Carlos Ruiz', 'Ochoa', '3212692321', 'chivitaaaa20@gmail.com', '$2y$10$Zfe.2Sl50Zwp4hyRaSU.POvN9uZD6w6YyObT5d8SJMST6Up0F2YAy', 0, '2026-05-07 00:06:10', '2026-05-07 00:06:10'),
-(12, 1, 12114424244, 'Carlos Ruiz', 'Ortiz', '3212692322', 'chivitaaaa@gmail.com', '$2y$10$WmyXg5UMUkIDKfEJMPgPUOSdaN9mS5OPf2ysBjX37R4r8pk4tIMw.', 0, '2026-05-07 02:48:10', '2026-05-07 02:48:10'),
-(13, 1, 1212123434, 'Manuel ', 'dfs', '3123123124', 'carlosruiza16@gmail.com', '$2y$10$e.02Q93O7t2PyTQYTu31seD.YB7gB8nqr.uOyfFlhLyo/Y.cWWUaC', 0, '2026-05-10 20:58:29', '2026-05-10 20:58:29');
+(1, 1, 1109383455, 'Manuel ', 'Ortiz', '3204567896', 'manuelO@gmail.com', '$2y$10$WH..4dS5oMOCrgpdzICi9euLA/FV.w5ymeGoqpSd6IK6NAJuwVg9y', 2, '2026-04-11 22:28:59', '2026-04-11 22:28:59'),
+(3, 2, 11093834543, 'Manuel ', 'ds', '3145678965', 'manuel00@gmail.com', '$2y$10$q/x4LcPE7KIuSsPQBgnswu4OaSqMiKYgjyHSDVXvwWidNhM18NEO.', 2, '2026-04-17 04:50:19', '2026-04-17 04:50:19'),
+(4, 2, 1109383489, 'Carlos Ruiz', 'Aranzales', '3181216450', 'chivitaaaa2008@gmail.com', '$2y$10$ijeDDd0SBtdRctXuWALM2.xH3SmysJxZObaLyFE3OrKQNgocwS1Ka', 2, '2026-04-21 07:09:51', '2026-04-21 07:09:51'),
+(5, 2, 1109383488, 'Carlos Ruiz', 'Aranzales', '3212692321', 'chivitaaaa2000@gmail.com', '$2y$10$WJvUF8yZDbLl2SbGYgJhaO6IXtYG1y89gBxI5YDkSKXZtRXCsMCb2', 2, '2026-04-22 07:36:10', '2026-04-22 07:36:10'),
+(9, 1, 1109383411, 'Carlos Ruiz', 'Aranzales', '3181216450', 'chivitaaaa200@gmail.com', '$2y$10$rPGqraiUXyjnq6Xgz3U/dekDzSqDWHcyqGId944nAdq/w7ogijUL.', 0, '2026-04-28 00:41:34', '2026-04-28 00:41:34'),
+(10, 1, 1109383486, 'Carlos Ruiz', 'Ochoa', '3213409567', 'chivitaaaa008@gmail.com', '$2y$10$MOMzsHc1KpMhco0BqXyGXOt1EVZ4Eva1RhKTcJuj67ncFArJbwbIi', 0, '2026-04-29 18:24:18', '2026-04-29 18:24:18'),
+(12, 1, 12114424244, 'Carlos Ruiz', 'Ortiz', '3212692322', 'chivitaaaa@gmail.com', '$2y$10$WmyXg5UMUkIDKfEJMPgPUOSdaN9mS5OPf2ysBjX37R4r8pk4tIMw.', 0, '2026-05-07 07:48:10', '2026-05-07 07:48:10'),
+(13, 1, 1212123434, 'Manuel ', 'dfs', '3123123124', 'carlosruiza16@gmail.com', '$2y$10$e.02Q93O7t2PyTQYTu31seD.YB7gB8nqr.uOyfFlhLyo/Y.cWWUaC', 0, '2026-05-11 01:58:29', '2026-05-11 01:58:29'),
+(14, 1, 1020430857, 'Steven ', 'Gomez Cabezas', '3181216450', 'stevengomezcabezas360@gmail.com', '$2y$10$b9i8AzdMORwjdezUaY64P.mdtmPv.m2A5MO0NN3WSU6uwijn.4l92', 0, '2026-05-21 19:20:34', '2026-05-21 19:20:34'),
+(15, 1, 1109383485, 'WILIAM', 'DUARTE', '3181216450', 'adsosenawd@gmail.com', '$2y$10$zWTSYV7nHMXcW.MT3GjHi.bJKsS9gCPagyUVqZLsvROkXJkIYEJaq', 0, '2026-05-21 21:51:15', '2026-05-21 21:51:15');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `document_types`
+--
+ALTER TABLE `document_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `estado`
+--
+ALTER TABLE `estado`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `habitaciones`
+--
+ALTER TABLE `habitaciones`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_categoria` (`id_categoria`),
+  ADD KEY `estado` (`estado`);
+
+--
+-- Indices de la tabla `metodos_pago`
+--
+ALTER TABLE `metodos_pago`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `id_metodo_pago` (`id_metodo_pago`),
+  ADD KEY `estado` (`estado`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `document_type_id` (`document_type_id`),
+  ADD KEY `role_id` (`role_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `document_types`
+--
+ALTER TABLE `document_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `estado`
+--
+ALTER TABLE `estado`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `habitaciones`
+--
+ALTER TABLE `habitaciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `metodos_pago`
+--
+ALTER TABLE `metodos_pago`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `habitaciones`
+--
+ALTER TABLE `habitaciones`
+  ADD CONSTRAINT `habitaciones_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`),
+  ADD CONSTRAINT `habitaciones_ibfk_2` FOREIGN KEY (`estado`) REFERENCES `estado` (`id`);
+
+--
+-- Filtros para la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`id_metodo_pago`) REFERENCES `metodos_pago` (`id`),
+  ADD CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`estado`) REFERENCES `estado` (`id`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`document_type_id`) REFERENCES `document_types` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
